@@ -17,16 +17,6 @@ def index(request):
         'description': 'Новые образы и лучшие бренды на GeekShop Store. Бесплатная доставка по всему миру! Аутлет: до -70% Собственный бренд. -20% новым покупателям.',
         # кнопка
         'button': 'Начать покупки',
-        # каталог
-        'catalog': 'Каталог',
-        # войти
-        'enter': 'Войти',
-        # пользователь
-        'user': 'User',
-        # выйти
-        'go_out': 'Выйти',
-        # дата
-        'date': datetime.now()
     }
 
     return render(request, 'mainapp/index.html', content)
