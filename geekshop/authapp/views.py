@@ -2,8 +2,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from authapp.forms import UserLoginForm, UserRegisterForm, UserProfileForm
-from django.contrib import auth
-from django.contrib import messages
+from django.contrib import auth, messages
 from basketapp.models import Basket
 
 # Create your views here.
