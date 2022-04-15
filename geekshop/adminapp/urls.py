@@ -1,29 +1,29 @@
 from django.urls import path
-from adminapp.views import index, admin_users, admin_user_create, admin_user_delete, admin_user_update, \
-    admin_product_categories, admin_product_categories_create, admin_product_categories_update, \
-    admin_product_categories_delete, admin_products, admin_products_create, admin_products_update, admin_products_delete
+from adminapp.views import IndexTemplateView, UserListView, UserCreateView, UserDeleteView, UserUpdateView, \
+    ProductCategoriesListView, ProductCategoriesCreateView, ProductCategoriesUpdateView, \
+    ProductCategoriesDeleteView, ProductsListView, ProductsCreateView, ProductsUpdateView, ProductsDeleteView
 
 app_name = 'adminapp'
 urlpatterns = [
 
     # Пользователи
-    path('', index, name='index'),
-    path('users/', admin_users, name='admin_users'),
-    path('user-create/', admin_user_create, name='admin_user_create'),
-    path('user-update/<int:id>/', admin_user_update, name='admin_user_update'),
-    path('user-delete/<int:id>/', admin_user_delete, name='admin_user_delete'),
+    path('', IndexTemplateView.as_view(), name='index'),
+    path('users/', UserListView.as_view(), name='admin_users'),
+    path('user-create/', UserCreateView.as_view(), name='admin_user_create'),
+    path('user-update/<int:pk>/', UserUpdateView.as_view(), name='admin_user_update'),
+    path('user-delete/<int:pk>/', UserDeleteView.as_view(), name='admin_user_delete'),
 
     # Категории
-    path('product-categories/', admin_product_categories, name='admin_product_categories'),
-    path('product-categories-create/', admin_product_categories_create, name='admin_product_categories_create'),
-    path('product-categories-update/<int:id>/', admin_product_categories_update,
+    path('product-categories/', ProductCategoriesListView.as_view(), name='admin_product_categories'),
+    path('product-categories-create/', ProductCategoriesCreateView.as_view(), name='admin_product_categories_create'),
+    path('product-categories-update/<int:pk>/', ProductCategoriesUpdateView.as_view(),
          name='admin_product_categories_update'),
-    path('product-categories-delete/<int:id>/', admin_product_categories_delete,
+    path('product-categories-delete/<int:pk>/', ProductCategoriesDeleteView.as_view(),
          name='admin_product_categories_delete'),
 
     # Товары
-    path('product/', admin_products, name='admin_products'),
-    path('product-create/', admin_products_create, name='admin_products_create'),
-    path('product-update/<int:id>/', admin_products_update, name='admin_products_update'),
-    path('product-delete/<int:id>/', admin_products_delete, name='admin_products_delete')
+    path('product/', ProductsListView.as_view(), name='admin_products'),
+    path('product-create/', ProductsCreateView.as_view(), name='admin_products_create'),
+    path('product-update/<int:pk>/', ProductsUpdateView.as_view(), name='admin_products_update'),
+    path('product-delete/<int:pk>/', ProductsDeleteView.as_view(), name='admin_products_delete')
 ]
