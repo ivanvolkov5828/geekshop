@@ -50,8 +50,10 @@ INSTALLED_APPS = [
     'basketapp',
     # admin
     'adminapp',
-
+    # for vk
     'social_django',
+    # ordersapp
+    'ordersapp',
 ]
 
 MIDDLEWARE = [
