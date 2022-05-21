@@ -10,6 +10,8 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
+from mainapp.models import Product
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -114,6 +116,13 @@ def order_forming_complete(request, pk):
     order.save()
     return HttpResponseRedirect(reverse('orders:list'))
 
+
+def get_product_price(request, pk):
+    if request.is_ajax():
+        product = Product.objects.get(pk=pk)
+        if product:
+            return JsonResponse({'price': product.price})
+        return JsonResponse({'price': 0})
 
 @receiver(pre_save, sender=OrderItem)
 @receiver(pre_save, sender=Basket)
