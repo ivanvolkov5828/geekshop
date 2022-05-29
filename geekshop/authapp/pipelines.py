@@ -35,7 +35,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
     if data['about']:
         user.userprofile.about = data['about']
 
-    bdate = datetime.strptime(data['bdate'], '%d.%m,%Y').date()
+    bdate = datetime.strptime(data['bdate'], '%d.%m.%Y').date()
     age = timezone.now().year - bdate.year
 
     if age < 18:
