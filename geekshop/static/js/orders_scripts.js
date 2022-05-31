@@ -9,7 +9,7 @@ window.onload = function () {
 
     $.ajax(
         {
-            url:"/basket/edit/" + t_href.name + "/" + t_href.value+ "/",
+            url:"/basketapp/edit/" + t_href.name + "/" + t_href.value+ "/",
             success: function (data){
                 $('.basket_list').html(data.result)
             }
@@ -28,7 +28,7 @@ window.onload = function () {
 
     $.ajax(
         {
-            url:"/basket/add/" + t_href + "/",
+            url:"/basketapp/add/" + t_href + "/",
             success: function (data){
                 $('.card_add_basket').html(data.result)
             }

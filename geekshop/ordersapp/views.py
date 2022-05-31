@@ -12,6 +12,8 @@ from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 from mainapp.models import Product
 from django.http import JsonResponse
+
+
 # Create your views here.
 
 
@@ -33,19 +35,18 @@ class OrderCreate(CreateView, BaseClassContextMixin):
         if self.request.POST:
             formset = OrderFormSet(self.request.POST)
         else:
-           # basket_item = Basket.objects.filter(user=self.request.user)
-	     basket_item = Basket.objects.filter(user=self.request.user).select_related()
-            if basket_item:
-                OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemsForm, extra=basket_item.count())
-                formset = OrderFormSet()
-
-                for num, form in enumerate(formset.forms):
-                    form.initial['product'] = basket_item[num].product
-                    form.initial['quantity'] = basket_item[num].quantity
-                    form.initial['price'] = basket_item[num].product.price
-                # basket_item.delete()
-            else:
-                formset = OrderFormSet()
+            # basket_item = Basket.objects.filter(user=self.request.user)
+            basket_item = Basket.objects.filter(user=self.request.user).select_related()
+        if basket_item:
+            OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemsForm, extra=basket_item.count())
+            formset = OrderFormSet()
+            for num, form in enumerate(formset.forms):
+                form.initial['product'] = basket_item[num].product
+                form.initial['quantity'] = basket_item[num].quantity
+                form.initial['price'] = basket_item[num].product.price
+            # basket_item.delete()
+        else:
+            formset = OrderFormSet()
         context['orderitems'] = formset
         return context
 
@@ -125,6 +126,7 @@ def get_product_price(request, pk):
             return JsonResponse({'price': product.price})
         return JsonResponse({'price': 0})
 
+
 @receiver(pre_save, sender=OrderItem)
 @receiver(pre_save, sender=Basket)
 def product_quantity_update_save(sender, instance, **kwargs):
@@ -141,7 +143,3 @@ def product_quantity_update_save(sender, instance, **kwargs):
 def product_quantity_update_delete(sender, instance, **kwargs):
     instance.product.quantity += instance.quantity
     instance.save()
-
-
-
-
