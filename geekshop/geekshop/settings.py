@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-@x(&nmr1ymw)as0z^$-b@!k9l@7^o0$5-%j^y&h6wh7@o=8dx8'
 
-#from dotenv import load_dotenv
-#load_dotenv(BASE_DIR / '.env')
+from dotenv import load_dotenv
+load_dotenv(BASE_DIR / '.env')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-SERVER = True
+SERVER = False
 if SERVER:
     DATABASES = {
         'default': {

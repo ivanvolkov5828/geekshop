@@ -1,0 +1,4 @@
+http://geekshop/
+http://geekshop/products
+http://geekshop/authapp/profile/
+http://geekshop/authapp/profile/detail/1/
